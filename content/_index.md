@@ -1,17 +1,23 @@
 ---
-title: My Site
+title: "Bardo Programador"
 toc: false
 ---
 
-This is the landing page.
+# Olá, mundo! 👋
 
-## Explore
+Bem-vindo ao meu blog pessoal e espaço de notas. Aqui compartilho aprendizados do dia a dia sobre desenvolvimento de software, Linux, arquitetura, ferramentas e experimentos.
+
+---
+
+## Navegação Rápida
 
 {{< cards >}}
-  {{< card link="docs" title="Docs" icon="book-open" >}}
-  {{< card link="about" title="About" icon="user" >}}
+  {{< card link="/blog" title="Blog" icon="book-open" subtitle="Confira as publicações e notas técnicas" >}}
+  {{< card link="/about" title="Sobre Mim" icon="user" subtitle="Saiba mais sobre meu background e projetos" >}}
 {{< /cards >}}
 
-## Documentation
+---
 
-For more information, visit [Hextra](https://imfing.github.io/hextra).
+## Últimos Posts
+
+Confira os posts mais recentes na seção de [Blog](/blog).

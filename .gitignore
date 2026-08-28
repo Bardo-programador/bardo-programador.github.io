@@ -5,3 +5,8 @@ resources/
 
 # Editor
 .vscode/
+
+# Environment and secrets
+.env
+*.env
+scripts/.env
