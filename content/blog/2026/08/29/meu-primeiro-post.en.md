@@ -76,7 +76,5 @@ The complete structure looks like this:
 │   └── styles.css # Theme base stylesheet
 └── hugo.yaml # Central site configuration
 ```
-```
-```
 
-The rest of the project is in [My repository](https://github.com/Bardo-programador/bardo-programador.github.io). If you have any suggestions, criticisms or just want to talk to me, just upload an Issue or send a message on my [Linkedin](https://www.linkedin.com/in/samuel-roberto-635666229/)
+The rest of the project is in [My repository](https://github.com/Bardo-programador/bardo-programador.github.io). If you have any suggestions, criticisms or just want to talk to me, just upload an Issue or send a message on my [Linkedin](https://www.linkedin.com/in/samuel-roberto-635666229/).
