@@ -1,25 +1,23 @@
 ---
 title: "Sobre"
-description: "Sobre o autor e o blog"
+description: "Sobre o autor"
 ---
 
 # Sobre Mim
 
-Olá! Sou desenvolvedor de software e entusiasta de tecnologia, Linux e open-source.
-
-Este blog foi criado para registrar descobertas, tutoriais práticos e reflexões sobre engenharia de software e produtividade.
+Olá! Sou  entusiasta de tecnologia, Linux e open-source. Gosto de testar coisas novas e jogar alguma coisa de vez em quando.
+Este blog foi criado para registrar descobertas, tutoriais práticos e qualquer coisa que achar interessante ou quiser postar.
 
 ---
 
 ## Áreas de Interesse
 
-- **Desenvolvimento & Arquitetura**: Backend, APIs, automações e ferramentas CLI.
-- **Linux & Open Source**: Customizações de ambiente, scripts bash, produtividade.
-- **DevOps & Cloud**: CI/CD com GitHub Actions, automações na AWS/S3.
-
+- Atualmente estou me desenvolvendo em engenharia de dados (ou dados em geral, o que vier primeiro)
 ---
 
 ## Contato & Redes
 
 - **GitHub**: [github.com/Bardo-programador](https://github.com/Bardo-programador)
-- **Twitter / X**: [@twitter](https://twitter.com/)
+- **Linkedin**: [https://www.linkedin.com/in/samuel-roberto-635666229/](https://www.linkedin.com/in/samuel-roberto-635666229/)
+- **Steam**: [https://steamcommunity.com/id/Samuel_Roberto/](https://steamcommunity.com/id/Samuel_Roberto/)
+
