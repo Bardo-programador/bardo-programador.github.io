@@ -4,7 +4,7 @@ name: Deploy Hugo site to Pages
 on:
   # Dispara no push para a branch principal
   push:
-    branches: ["main", "theme/re-terminal"]
+    branches: ["main"]
 
   # Permite execução manual na aba Actions
   workflow_dispatch:
