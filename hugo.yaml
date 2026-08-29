@@ -1,76 +1,115 @@
 # Hugo configuration file
 baseURL: "https://bardo-programador.github.io/"
 title: "Bardo Programador"
-
-# Import Hextra module
-module:
-  imports:
-    - path: github.com/imfing/hextra
+theme: "re-terminal"
 
 # Multilingual configuration
 defaultContentLanguage: pt
 defaultContentLanguageInSubdir: false
 
+pagination:
+  pagerSize: 5
+
+params:
+  # Content type para listagem na home
+  contentTypeName: "blog"
+
+  # Cor do tema: ["orange", "blue", "red", "green", "pink", "paper"]
+  themeColor: "orange"
+
+  # Configurações do layout (centralizado na tela)
+  showMenuItems: 3
+  showLanguageSelector: true
+  fullWidthTheme: false
+  centerTheme: true
+  readingTime: true
+  autoCover: true
+  showLastUpdated: false
+
+  # S3 Base URL (para o shortcode s3img)
+  s3_base_url: "https://pub-9e61c7f76b8c4ef496ec79bc80204d16.r2.dev"
+
+  logo:
+    logoText: "bardo@linux:~#"
+    logoHomeLink: "/"
+    cursor: true
+
+  # Strings globais de fallback
+  readMore: "Leia mais"
+  readOtherPosts: "Outros posts"
+  newerPosts: "Posts mais recentes"
+  olderPosts: "Posts anteriores"
+  minuteReadingTime: "min de leitura"
+  words: "palavras"
+
 languages:
   pt:
+    weight: 1
     label: "Português"
     locale: "pt-BR"
-    weight: 1
+    languageCode: "pt-BR"
+    languageName: "Português"
     title: "Bardo Programador"
+    subtitle: "Blog pessoal e anotações sobre desenvolvimento e Linux"
     params:
-      description: "Blog pessoal e notas sobre desenvolvimento, Linux e tecnologia"
+      readMore: "Leia mais"
+      readOtherPosts: "Outros posts"
+      newerPosts: "Posts mais recentes"
+      olderPosts: "Posts anteriores"
+      minuteReadingTime: "min de leitura"
+      words: "palavras"
+      logo:
+        logoText: "bardo@linux:~#"
+        logoHomeLink: "/"
+        cursor: true
     menu:
       main:
-        - name: "Blog"
-          pageRef: "/blog"
+        - identifier: "blog"
+          name: "Blog"
+          url: "/blog/"
           weight: 1
-        - name: "Sobre"
-          pageRef: "/about"
+        - identifier: "about"
+          name: "Sobre"
+          url: "/about/"
           weight: 2
-        - name: "Busca"
-          weight: 3
-          params:
-            type: search
-        - name: "GitHub"
-          weight: 4
+        - identifier: "github"
+          name: "GitHub ↗"
           url: "https://github.com/Bardo-programador"
-          params:
-            icon: github
-        - name: "Twitter"
-          weight: 5
-          url: "https://twitter.com/"
-          params:
-            icon: x-twitter
+          weight: 3
 
   en:
+    weight: 2
     label: "English"
     locale: "en-US"
-    weight: 2
+    languageCode: "en-US"
+    languageName: "English"
     title: "Bardo Programador"
+    subtitle: "Personal blog and notes on software engineering and Linux"
     params:
-      description: "Personal blog with daily notes, software development, and tech"
+      readMore: "Read more"
+      readOtherPosts: "Read other posts"
+      newerPosts: "Newer posts"
+      olderPosts: "Older posts"
+      minuteReadingTime: "min read"
+      words: "words"
+      logo:
+        logoText: "bardo@linux:~#"
+        logoHomeLink: "/en/"
+        cursor: true
     menu:
       main:
-        - name: "Blog"
-          pageRef: "/blog"
+        - identifier: "blog"
+          name: "Blog"
+          url: "/en/blog/"
           weight: 1
-        - name: "About"
-          pageRef: "/about"
+        - identifier: "about"
+          name: "About"
+          url: "/en/about/"
           weight: 2
-        - name: "Search"
-          weight: 3
-          params:
-            type: search
-        - name: "GitHub"
-          weight: 4
+        - identifier: "github"
+          name: "GitHub ↗"
           url: "https://github.com/Bardo-programador"
-          params:
-            icon: github
-        - name: "Twitter"
-          weight: 5
-          url: "https://twitter.com/"
-          params:
-            icon: x-twitter
+          weight: 3
 
 # Permalinks structure for date-based blog posts
 permalinks:
@@ -78,27 +117,8 @@ permalinks:
     blog: /blog/:year/:month/:day/:slug/
 
 markup:
-  # allow raw html
   goldmark:
     renderer:
       unsafe: true
-
-  # enable hextra syntax highlight
   highlight:
     noClasses: false
-
-params:
-  # S3 Base URL (pode ser configurado para o endpoint do bucket ou CDN)
-  # Exemplo: "https://meu-bucket.s3.amazonaws.com" ou "https://cdn.meudominio.com"
-  s3_base_url: ""
-
-  navbar:
-    displayTitle: true
-    displayLogo: false
-
-  footer:
-    displayCopyright: true
-    displayPoweredBy: true
-
-  editURL:
-    enable: false

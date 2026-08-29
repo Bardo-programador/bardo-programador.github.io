@@ -1,79 +1,147 @@
-# Hextra Starter Template
+# 💻 Bardo Programador (Blog Pessoal)
 
-[![Deploy Hugo site to Pages](https://github.com/imfing/hextra-starter-template/actions/workflows/pages.yaml/badge.svg)](https://github.com/imfing/hextra-starter-template/actions/workflows/pages.yaml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6e83fd88-5ffe-4808-9689-c0f3b100bfe3/deploy-status)](https://app.netlify.com/sites/hextra-starter-template/deploys)
-![Vercel Deployment Status](https://img.shields.io/github/deployments/imfing/hextra-starter-template/production?logo=vercel&logoColor=white&label=vercel&labelColor=black&link=https%3A%2F%2Fhextra-starter-template.vercel.app%2F)
+[![Deploy Hugo site to Pages](https://github.com/Bardo-programador/bardo.github.io/actions/workflows/pages.yaml/badge.svg)](https://github.com/Bardo-programador/bardo.github.io/actions/workflows/pages.yaml)
 
+Repositório do meu blog pessoal e diário de anotações sobre desenvolvimento de software, Linux, arquitetura e tecnologia.
 
-🐣 Minimal template for getting started with [Hextra](https://github.com/imfing/hextra)
+Construído utilizando o gerador de sites estáticos [Hugo](https://gohugo.io/), tema [re-Terminal](https://github.com/mirus-ua/hugo-theme-re-terminal) com estética retrô duotone, suporte nativo a posts internacionais (PT/EN), hospedagem de screenshots em bucket S3/R2 e deploy automático no GitHub Pages.
 
-![hextra-template](https://github.com/imfing/hextra-starter-template/assets/5097752/c403b9a9-a76c-47a6-8466-513d772ef0b7)
+---
 
-[🌐 Demo ↗](https://imfing.github.io/hextra-starter-template/)
+## 📂 Estrutura do Projeto
 
-## Quick Start
-
-Use this template to create your own repository:
-
-<img src="https://docs.github.com/assets/cb-77734/mw-1440/images/help/repository/use-this-template-button.webp" width=400 />
-
-You can also quickly start developing using the following online development environment:
-
-- [GitHub Codespaces](https://github.com/codespaces)
-
-    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/imfing/hextra-starter-template)
-
-    Create a new codespace and follow the [Local Development](#local-development) to launch the preview
-
-
-## Deployment
-
-### GitHub Pages
-
-A GitHub Actions workflow is provided in [`.github/workflows/pages.yaml`](./.github/workflows/pages.yaml) to [publish to GitHub Pages](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/) for free. 
-
-For details, see [Publishing with a custom GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow).
-
-Note: in the settings, make sure to set the Pages deployment source to **GitHub Actions**:
-
-<img src="https://github.com/imfing/hextra-starter-template/assets/5097752/99676430-884e-42ab-b901-f6534a0d6eee" width=600 />
-
-[Run the workflow manually](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow) if it's not triggered automatically.
-
-### Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/imfing/hextra-starter-template)
-
-### Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fimfing%2Fhextra-starter-template&env=HUGO_VERSION)
-
-Override the configuration:
-
-<img src="https://github.com/imfing/hextra-starter-template/assets/5097752/e2e3cecd-c884-47ec-b064-14f896fee08d" width=600 />
-
-## Local Development
-
-Pre-requisites: [Hugo](https://gohugo.io/getting-started/installing/), [Go](https://golang.org/doc/install) and [Git](https://git-scm.com)
-
-```shell
-# Clone the repo
-git clone https://github.com/imfing/hextra-starter-template.git
-
-# Change directory
-cd hextra-starter-template
-
-# Start the server
-hugo mod tidy
-hugo server --logLevel debug --disableFastRender -p 1313
+```text
+.
+├── .github/workflows/pages.yaml   # Pipeline de CI/CD para GitHub Pages
+├── content/                       # Conteúdo do blog em Markdown
+│   ├── _index.md / _index.en.md   # Landing page (PT / EN)
+│   ├── about.md / about.en.md     # Página Sobre (PT / EN)
+│   └── blog/                      # Posts organizados por data (YYYY/MM/DD/)
+├── layouts/                       # Sobrescritas de templates e shortcodes
+│   ├── _default/baseof.html       # Estrutura base com rodapé em largura total
+│   ├── blog/list.html             # Listagem limpa em h5 agrupada por mês
+│   ├── partials/                  # Cabeçalho, menu e seletor de idiomas
+│   └── shortcodes/s3img.html      # Shortcode para imagens hospedadas no S3/R2
+├── scripts/                       # CLI Helpers e automações locais
+│   ├── helper.sh                  # Wrapper principal de comandos
+│   ├── new_post.py                # Gerador automático de posts
+│   ├── regenerate_index.py        # Validador e regenerador de índices
+│   └── upload_s3.sh               # Upload de screenshots para S3 (CLI & Thunar)
+├── static/                        # Recursos estáticos e customizações CSS
+│   ├── style.css                  # Customizações de estilo (fonte 150%, rodapé)
+│   └── styles.css                 # Folha de estilo base do tema
+└── hugo.yaml                      # Configuração central do site
 ```
 
-### Update theme
+---
 
-```shell
-hugo mod get -u
-hugo mod tidy
+## ⚡ Guia Rápido de Comandos (CLI Helper)
+
+O repositório inclui um utilitário de terminal em `scripts/helper.sh` para facilitar as tarefas do dia a dia:
+
+### 1. Criar um novo post
+```bash
+./scripts/helper.sh new-post "Título do Artigo"
+```
+> Cria automaticamente os arquivos `.md` (PT) e `.en.md` (EN) em `content/blog/YYYY/MM/DD/` com o timestamp atual, slug sanitizado, frontmatter pré-preenchido e regenera os índices do blog.
+
+### 2. Regenerar e validar os índices
+```bash
+./scripts/helper.sh regenerate_index
+```
+> Varre todos os posts, valida a estrutura e atualiza os arquivos `_index.md` de `/` e `/blog`.
+
+### 3. Rodar o ambiente local de desenvolvimento
+```bash
+./scripts/helper.sh server
+# ou
+hugo server -D
+```
+* 🇧🇷 **Português**: [http://localhost:1313/](http://localhost:1313/)
+* 🇺🇸 **Inglês**: [http://localhost:1313/en/](http://localhost:1313/en/)
+* 📚 **Arquivo do Blog**: [http://localhost:1313/blog/](http://localhost:1313/blog/)
+
+### 4. Compilar para produção
+```bash
+./scripts/helper.sh build
+# ou
+hugo --cleanDestinationDir --gc --minify
 ```
 
-See [Update modules](https://gohugo.io/hugo-modules/use-modules/#update-modules) for more details.
+---
 
+## ✍️ Convenções de Posts e Frontmatter
+
+Os posts seguem a estrutura de pastas por data `content/blog/YYYY/MM/DD/slug.md` e URLs padronizadas no formato `/blog/:year/:month/:day/:slug/`.
+
+### Exemplo de Frontmatter (`slug.md`):
+```yaml
+---
+title: "Anotações e Produtividade no Terminal Linux"
+date: 2026-08-28T21:45:00-03:00
+slug: "anotacoes-linux"
+description: "Dicas de atalhos e ferramentas de linha de comando para o dia a dia."
+tags: ["linux", "terminal", "produtividade"]
+authors:
+  - name: "Bardo Programador"
+    link: "https://github.com/Bardo-programador"
+---
+
+Conteúdo do artigo em Markdown aqui...
+```
+
+* **Descrição**: Usada nos cards e listagens da Home (recomendado de 100 a 160 caracteres).
+* **Internacionalização**: Para disponibilizar o artigo em inglês, basta manter o arquivo irmão `slug.en.md` no mesmo diretório. O seletor de idiomas no topo da página faz a alternância direta entre as versões do artigo.
+
+---
+
+## 🖼️ Upload de Imagens no S3 / Cloudflare R2
+
+Para evitar commits de arquivos binários pesados no Git:
+
+1. **Configuração**: Credenciais em `scripts/.env` (não versionado no Git).
+2. **Via Thunar (1 Clique no Linux)**:
+   * Clique direito em qualquer imagem > **`Enviar Imagem para S3 (Blog)`**.
+   * O script faz o upload, envia notificação no desktop (`notify-send`) e copia a tag Markdown (`![alt](url)`) para a Área de Transferência (`wl-copy`).
+3. **Via CLI**:
+   ```bash
+   ./scripts/helper.sh upload-s3 ~/Imagens/screenshot.png
+   ```
+4. **Shortcode Opcional**:
+   ```markdown
+   {{< s3img src="screenshots/2026/08/exemplo.png" alt="Demonstração" caption="Legenda" >}}
+   ```
+
+> [!NOTE] 
+> O arquivo `scripts/.env` guarda suas configurações do S3/R2:
+```bash
+> S3_BUCKET_NAME="seu-bucket"
+> AWS_REGION="auto"
+> S3_FOLDER_PREFIX="screenshots"
+> S3_BASE_URL="https://pub-xxxxxxxxxxxxxx.r2.dev"
+> S3_ENDPOINT_URL="https://<account_id>.r2.cloudflarestorage.com"
+> AWS_ACCESS_KEY_ID="seu_access_key"
+> AWS_SECRET_ACCESS_KEY="seu_secret_key"
+
+> [!WARNING]
+> Jamais versione seu script/.env 
+---
+
+## 🚀 Deploy Contínuo (GitHub Pages)
+
+O deploy é realizado de forma 100% automatizada via GitHub Actions ([`.github/workflows/pages.yaml`](.github/workflows/pages.yaml)):
+
+```bash
+git add .
+git commit -m "feat: novo artigo publicado"
+git push origin main
+```
+
+O workflow compila o site com Hugo Extended e publica diretamente em:
+👉 **[https://bardo-programador.github.io/](https://bardo-programador.github.io/)**
+
+---
+
+## 📄 Licença
+
+Conteúdo e código sob licença [MIT](LICENSE).

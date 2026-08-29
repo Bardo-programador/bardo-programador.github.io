@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <div class="blog-archive">
+    <h1 class="page-title">{{ .Title }}</h1>
+    
+    {{ with .Content }}
+      <div class="index-content" style="margin-bottom: 25px;">
+        {{ . }}
+      </div>
+    {{ end }}
+
+    <div class="archive-list">
+      {{ range .RegularPages.GroupByDate "2006-01" }}
+        <div class="archive-month-group">
+          {{ range .Pages }}
+            <h5 class="archive-post-item">
+              <time class="archive-date">{{ .Date.Format "2006-01" }}</time>
+              <a class="archive-title" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+            </h5>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}
