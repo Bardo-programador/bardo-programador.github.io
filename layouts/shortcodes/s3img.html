@@ -1,0 +1,31 @@
+{{/*
+  Shortcode s3img: Renderiza imagens hospedadas no S3 ou CDN
+  Uso:
+    {{< s3img src="screenshots/2026/08/exemplo.png" alt="Texto alternativo" caption="Legenda opcional" >}}
+    ou
+    {{< s3img "screenshots/2026/08/exemplo.png" >}}
+*/}}
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- $alt := .Get "alt" | default (.Get 1) | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $class := .Get "class" | default "rounded-lg shadow-md my-4 max-w-full h-auto" -}}
+{{- $width := .Get "width" | default "" -}}
+{{- $height := .Get "height" | default "" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+
+{{- $finalSrc := $src -}}
+{{- if not (or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//")) -}}
+  {{- $baseUrl := site.Params.s3_base_url | default "" -}}
+  {{- if $baseUrl -}}
+    {{- $finalSrc = printf "%s/%s" (strings.TrimSuffix "/" $baseUrl) (strings.TrimPrefix "/" $src) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $caption -}}
+<figure class="my-6 text-center">
+  <img src="{{ $finalSrc }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}"{{ if $width }} width="{{ $width }}"{{ end }}{{ if $height }} height="{{ $height }}"{{ end }} />
+  <figcaption class="text-sm text-gray-500 dark:text-gray-400 mt-2 italic">{{ $caption }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $finalSrc }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}"{{ if $width }} width="{{ $width }}"{{ end }}{{ if $height }} height="{{ $height }}"{{ end }} />
+{{- end -}}

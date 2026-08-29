@@ -1,0 +1,19 @@
+{{ $page := . }}
+<ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">{{ or .Language.LanguageName .Language.Label .Language.LanguageCode }}&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      {{ range $.Site.Sites }}
+        {{ $lang := .Language }}
+        {{ $translatedPage := index (where $page.AllTranslations "Language.Lang" $lang.Lang) 0 }}
+        {{ $targetURL := .Home.RelPermalink }}
+        {{ if $translatedPage }}
+          {{ $targetURL = $translatedPage.RelPermalink }}
+        {{ end }}
+        <li>
+          <a href="{{ $targetURL }}">{{ or $lang.LanguageName $lang.Label $lang.LanguageCode }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </li>
+</ul>
