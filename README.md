@@ -114,14 +114,6 @@ Para evitar commits de arquivos binários pesados no Git:
 
 > [!NOTE] 
 > O arquivo `scripts/.env` guarda suas configurações do S3/R2:
-```bash
-> S3_BUCKET_NAME="seu-bucket"
-> AWS_REGION="auto"
-> S3_FOLDER_PREFIX="screenshots"
-> S3_BASE_URL="https://pub-xxxxxxxxxxxxxx.r2.dev"
-> S3_ENDPOINT_URL="https://<account_id>.r2.cloudflarestorage.com"
-> AWS_ACCESS_KEY_ID="seu_access_key"
-> AWS_SECRET_ACCESS_KEY="seu_secret_key"
 
 > [!WARNING]
 > Jamais versione seu script/.env 
