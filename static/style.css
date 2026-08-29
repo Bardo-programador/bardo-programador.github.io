@@ -76,6 +76,34 @@ body {
 }
 
 /* ==========================================================================
+   Marcadores de Lista Customizados (Troca do hífen por "·")
+   ========================================================================== */
+.post ul,
+.content ul {
+  list-style: none;
+  padding-left: 32px;
+}
+
+.post ul li,
+.content ul li {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.post ul li:not(:empty)::before,
+.content ul li:not(:empty)::before,
+.terms ul li:not(:empty)::before {
+  content: "·" !important;
+  position: absolute;
+  left: -24px;
+  top: -1px;
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 1.4em;
+  line-height: 1;
+}
+
+/* ==========================================================================
    Rodapé em Largura Total (Full Width) com Contraste Suave (Estilo Akita)
    ========================================================================== */
 footer.footer {
